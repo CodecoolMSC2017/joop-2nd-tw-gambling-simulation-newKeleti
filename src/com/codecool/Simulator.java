@@ -4,11 +4,11 @@ import java.util.Random;
 
 public class Simulator {
     
-    int green = 0;
-    int[] blacks = {2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31,33,35};
-    int[] reds = {1,3,5,7,9,12,14,16,18,21,23,25,27,28,30,32,34,36};
-    int winnernum;
-    String winnerCol;
+    protected int green;
+    protected int[] blacks;
+    protected int[] reds;
+    protected int winnernum;
+    protected String winnerCol;
 
     public Simulator(int green, int[] blacks, int[] reds) {
         Random rand = new Random();
@@ -30,7 +30,7 @@ public class Simulator {
     }
 
     public String getSim() {
-        return winnerCol + ": "+winnernum;
+        return winnerCol+","+winnernum;
     }
 
 }
