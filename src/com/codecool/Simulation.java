@@ -9,7 +9,7 @@ public class Simulation {
     
     protected int green = 0;
     protected int[] blacks = {2,4,6,8,10,11,13,15,17,20,22,24,26,28,29,31,33,35};
-    protected int[] reds = {1,3,5,7,9,12,14,16,18,21,23,25,27,28,30,32,34,36};
+    protected int[] reds = {1,3,5,7,9,12,14,16,18,19,21,23,25,27,28,30,32,34,36};
     protected int redcount = 0;
     protected int greencount = 0;
     protected int blackcount = 0;

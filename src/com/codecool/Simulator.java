@@ -23,7 +23,7 @@ public class Simulator {
             winnernum = green;
             winnerCol = "Green";
         } else {
-            ran = rand.nextInt(18);
+            ran = rand.nextInt(19);
             winnernum = reds[ran];
             winnerCol = "Red";
         }
