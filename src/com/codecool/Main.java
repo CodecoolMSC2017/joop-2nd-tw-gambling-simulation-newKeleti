@@ -38,8 +38,8 @@ public class Main {
                 count++;
                 }
             end = System.currentTimeMillis();
+            logger.logTimeTaken("Time it took to generate simulations:", start, end);
             }
-        logger.logTimeTaken("Time it took to generate simulations:", start, end);
 
         if (list.size() > 0) {
             for (int i = 0; i < list.size(); i++) {
