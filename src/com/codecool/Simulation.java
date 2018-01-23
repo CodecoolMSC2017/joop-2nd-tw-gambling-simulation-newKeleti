@@ -3,10 +3,7 @@ package com.codecool;
 import java.util.*;
 import java.io.*;
 import java.text.*;
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
 
 public class Simulation {
     
@@ -49,7 +46,6 @@ public class Simulation {
             ex.getMessage();
         }
     }
-<<<<<<< Updated upstream
 
     public ArrayList<String[]> load() throws IOException { 
         String file = "data/data.csv";
@@ -58,17 +54,14 @@ public class Simulation {
             String line = "";
             while ((line = br.readLine()) != null) {
                 content.add(line.split(","));
-            }
-        } catch (FileNotFoundException e) {
-        }
-        for(String[] str: content){
-            for(String str1: str){
-                System.out.println(str);
-
-            }
-        }
+                }
+            } catch (FileNotFoundException e) {
+                e.getMessage();
+                }
+        /*for(int i = 0; i < content.size(); i++) {
+            String[] arr = content.get(i);
+            System.out.println(arr[2]);
+        }*/
         return content;
     }
-=======
->>>>>>> Stashed changes
 }
