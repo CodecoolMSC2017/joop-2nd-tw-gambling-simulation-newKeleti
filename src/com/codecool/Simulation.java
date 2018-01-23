@@ -3,7 +3,10 @@ package com.codecool;
 import java.util.*;
 import java.io.*;
 import java.text.*;
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 
 public class Simulation {
     
@@ -46,6 +49,7 @@ public class Simulation {
             ex.getMessage();
         }
     }
+<<<<<<< Updated upstream
 
     public ArrayList<String[]> load() throws IOException { 
         String file = "data/data.csv";
@@ -65,4 +69,6 @@ public class Simulation {
         }
         return content;
     }
+=======
+>>>>>>> Stashed changes
 }
