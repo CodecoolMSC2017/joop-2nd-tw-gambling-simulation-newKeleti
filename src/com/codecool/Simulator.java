@@ -4,11 +4,11 @@ import java.util.Random;
 
 public class Simulator {
     
-    protected int green;
-    protected int[] blacks;
-    protected int[] reds;
-    protected int winnernum;
-    protected String winnerCol;
+    private int green;
+    private int[] blacks;
+    private int[] reds;
+    private int winnernum;
+    private String winnerCol;
 
     public Simulator(int green, int[] blacks, int[] reds) {
         Random rand = new Random();
@@ -23,7 +23,7 @@ public class Simulator {
             winnernum = green;
             winnerCol = "Green";
         } else {
-            ran = rand.nextInt(19);
+            ran = rand.nextInt(18);
             winnernum = reds[ran];
             winnerCol = "Red";
         }

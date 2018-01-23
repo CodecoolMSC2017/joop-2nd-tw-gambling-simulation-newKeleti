@@ -11,71 +11,62 @@ public class Main {
         ArrayList<String> list = new ArrayList<>();
         Simulation loader = new Simulation();
         Simulation defaultCSV = new Simulation();
-        int arg = 0;
         long start = 0;
         long end = 0;
         int[] numbers = new int[37];
+        Logger logger = new Logger();
+        int blackcount = 0, redcount = 0, greencount = 0;
+
         try {
-        readlist = loader.load();
-        } catch(Exception e) {
-            e.getMessage(); 
-            }   
+            readlist = loader.load();
+            } catch(Exception e) {
+                e.getMessage();
+                }
 
         for (int i = 0; i < readlist.size(); i++) {
             String[] read = readlist.get(i);
             String joined = String.join(",", read);
             list.add(joined);
-        }
-
-        try {
-            Integer.valueOf(args[0]);
-        } catch (Exception e) {
-            /*for (int j = 0; j < readlist.size(); j++) {
-                String[] arr = readlist.get(j);
-                System.out.println((j+1)+". "+arr[0]+","+arr[1]+","+arr[2]);
-                arg++;
-            }*/
             }
-        
+   
         if (args.length > 0) {
-                start = System.currentTimeMillis();
+            logger.simulationInit(Integer.parseInt(args[0]));
+            start = System.currentTimeMillis();
             while (count <= Integer.parseInt(args[0])) {
                 Simulation sim = new Simulation();
                 list.add(sim.getResult());
                 count++;
                 }
-                end = System.currentTimeMillis();
+            end = System.currentTimeMillis();
             }
-    
-        
+        logger.logTimeTaken("Time it took to generate simulations:", start, end);
+
         if (list.size() > 0) {
             for (int i = 0; i < list.size(); i++) {
                 readlist.add(list.get(i).split(","));
                 }
             }
 
-
+        start = System.currentTimeMillis();
         for (int i = 0; i < list.size(); i++) {
             defaultCSV.generateData(list);
         }
+        end = System.currentTimeMillis();
 
         for (int i = 0; i < list.size(); i++) {
             String[] splitted = list.get(i).split(",");
             int current = Integer.parseInt(splitted[2]);
-            //System.out.println(current);
             numbers[current]++;
-        }
-
-        
-        /*if (arg == 0) {
-            for (int j = 0; j < list.size(); j++) {
-                System.out.println((j+1)+". "+list.get(j));
+            if (splitted[1].equals("Black")) {
+                blackcount++;
+            } else if (splitted[1].equals("Green")) {
+                greencount++;
+            } else {
+                redcount++;
             }
-        }*/
-        
-        Statistics stat = new Statistics();
-        System.out.println(stat.numberOfNumbers(numbers));
-        System.out.println(stat.simulationTime(start, end));
-        System.out.println(stat.allSimulation(list));
+        }
+        logger.finalColors(greencount, blackcount, redcount);
+        logger.numberOfSims((greencount+blackcount+redcount));
+        logger.finalStats(numbers, greencount, blackcount, redcount);
     }
 }
