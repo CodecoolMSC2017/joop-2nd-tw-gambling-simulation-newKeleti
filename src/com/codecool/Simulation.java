@@ -1,18 +1,9 @@
 package com.codecool;
 
 import java.util.*;
-import java.text.SimpleDateFormat;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.io.*;
-import java.io.BufferedInputStream;
-import java.io.DataInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.*;
-import java.util.ArrayList;
+import java.text.*;
+
 
 public class Simulation {
     
@@ -56,4 +47,22 @@ public class Simulation {
         }
     }
 
+    public ArrayList<String[]> load() throws IOException { 
+        String file = "data/data.csv";
+        ArrayList<String[]> content = new ArrayList<>();
+        try(BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String line = "";
+            while ((line = br.readLine()) != null) {
+                content.add(line.split(","));
+            }
+        } catch (FileNotFoundException e) {
+        }
+        for(String[] str: content){
+            for(String str1: str){
+                System.out.println(str);
+
+            }
+        }
+        return content;
+    }
 }
