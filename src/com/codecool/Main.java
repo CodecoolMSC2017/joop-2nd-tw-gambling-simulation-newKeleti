@@ -18,12 +18,18 @@ public class Main {
             e.getMessage(); 
             }   
 
+        for (int i = 0; i < readlist.size(); i++) {
+            String[] read = readlist.get(i);
+            String joined = String.join(",", read);
+            list.add(joined);
+        }
+
         try {
             Integer.valueOf(args[0]);
         } catch (Exception e) {
             for (int j = 0; j < readlist.size(); j++) {
                 String[] arr = readlist.get(j);
-                System.out.println(j+". "+arr[0]+","+arr[1]+","+arr[2]);
+                System.out.println((j+1)+". "+arr[0]+","+arr[1]+","+arr[2]);
                 arg++;
                 }
             }
@@ -32,7 +38,6 @@ public class Main {
             while (count <= Integer.parseInt(args[0])) {
                 Simulation sim = new Simulation();
                 list.add(sim.getResult());
-                sim.generateData(list);
                 count++;
                 }
             }
@@ -43,14 +48,14 @@ public class Main {
                 }
             }
 
-
+        for (int i = 0; i < (list.size() / 2); i++) {
+            defaultCSV.generateData(list);
+        }
 
         if (arg == 0) {
-            for (int j = 0; j < readlist.size(); j++) {
-                String[] arr = readlist.get(j);
-                System.out.println(j+". "+arr[0]+","+arr[1]+","+arr[2]);
+            for (int j = 0; j < list.size(); j++) {
+                System.out.println((j+1)+". "+list.get(j));
             }
         }
     }
 }
-fa
