@@ -21,17 +21,9 @@ public class Logger {
     }
 
     public void finalStats(int[] numbers, int greencount, int blackcount, int redcount) {
-        System.out.print("Would you like to see detailed occurrence of each number by color? [Y/N]: ");
-        Scanner scan = new Scanner(System.in);
-        String loweredscan = scan.nextLine().toLowerCase();
-        switch (loweredscan) {
-            case "y": 
-            System.out.println();
-            System.out.println(stat.numberOfNumbers(numbers, greencount, blackcount, redcount));
-            break;
-            default: System.exit(0);
-        }
+            System.out.println(stat.numberOfNumbers(numbers, greencount, blackcount, redcount)+"\n");
     }
+    
 
     public void numberOfSims(int simulationNumber) {
         System.out.println("Number of simulations considered in the statistics: "+simulationNumber+"\n");
@@ -42,11 +34,12 @@ public class Logger {
     }
 
     public void evenOddCount(int[] numbers){
-        System.out.println(stat.numberOfEvenOdd(numbers));
+        System.out.println(stat.numberOfEvenOdd(numbers)+"\n");
     }
 
-    public void handleMenu(int simulationNumber, int greencount, int blackcount, int redcount) {
-        String[] menupoints = {"Number of all simulations", "Number of colors"};
+    
+    public void handleMenu(int simulationNumber, int greencount, int blackcount, int redcount,int[] numbers) {
+        String[] menupoints = {"Number of all simulations", "Number of colors","Number of Evens and Odds","Detailed Statistics By Colors"};
         int menuChoice = 0;
         Scanner scan = new Scanner(System.in);
         boolean running = true;
@@ -65,7 +58,13 @@ public class Logger {
                     break;
                     case 2: finalColors(greencount, blackcount, redcount);
                     break;
+                    case 3: evenOddCount(numbers);
+                    break;
+                    case 4: finalStats(numbers, greencount, blackcount, redcount);
+                    break;
                     case 0: System.exit(0);
+                    break;
+                    default: System.out.println("Please enter a valid menupoint.\n");
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Please enter a valid menupoint.\n");

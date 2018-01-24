@@ -77,6 +77,6 @@ public class Main {
         logger.finalColors(greencount, blackcount, redcount);
         logger.evenOddCount(numbers);
         logger.finalStats(numbers, greencount, blackcount, redcount);*/
-        logger.handleMenu((greencount+blackcount+redcount), greencount, blackcount, redcount);
+        logger.handleMenu((greencount+blackcount+redcount), greencount, blackcount, redcount,numbers);
     }
 }
