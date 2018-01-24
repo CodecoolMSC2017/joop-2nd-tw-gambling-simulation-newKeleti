@@ -63,9 +63,27 @@ public class Statistics {
     }
 
     public String numberOfColors(int greens, int blacks, int reds) {
+        float sums = (greens+blacks+reds);
+        double onepercent = sums/ 100;
+        double greenpercent= greens / onepercent;
+        double blackpercent= blacks / onepercent;
+        double redpercent= reds / onepercent;
         return "Number of generated numbers by colors:"
-        +"\nGreens: "+greens
-        +"\nBlacks: "+blacks
-        +"\nReds: "+reds;
+        +"\nGreens: "+greens+" which is "+(int)Math.round(greenpercent)+"%"
+        +"\nBlacks: "+blacks+" which is "+(int)Math.round(blackpercent)+"%"
+        +"\nReds: "+reds+" which is "+(int)Math.round(redpercent)+"%";
+    }
+
+    public String numberOfEvenOdd(int[] numbers){
+        int evencount = 0;
+        int oddcount = 0;
+        for (int i = 1; i <numbers.length; i++){
+            if (i%2==0){
+                evencount+=numbers[i];
+            }else{
+            oddcount+=numbers[i];
+        }
+    }
+        return "Number of odds: "+oddcount+"\nNumber of evens: "+evencount;
     }
 }

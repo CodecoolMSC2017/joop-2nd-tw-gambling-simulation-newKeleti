@@ -40,4 +40,8 @@ public class Logger {
     public void finalColors(int greencount, int blackcount, int redcount) {
         System.out.println(stat.numberOfColors(greencount, blackcount, redcount));
     }
+
+    public void evenOddCount(int[] numbers){
+        System.out.println(stat.numberOfEvenOdd(numbers));
+    }
 }

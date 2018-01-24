@@ -73,8 +73,9 @@ public class Main {
                 redcount++;
             }
         }
-        logger.finalColors(greencount, blackcount, redcount);
         logger.numberOfSims((greencount+blackcount+redcount));
+        logger.finalColors(greencount, blackcount, redcount);
+        logger.evenOddCount(numbers);
         logger.finalStats(numbers, greencount, blackcount, redcount);
     }
 }
