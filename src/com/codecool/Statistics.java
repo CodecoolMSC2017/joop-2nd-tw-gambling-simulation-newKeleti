@@ -87,4 +87,23 @@ public class Statistics {
         return "Number of odds: "+oddcount+" which is "+(int)Math.round(oddcount/onepercent)+"%"
         +"\nNumber of evens: "+evencount+" which is "+(int)Math.round(evencount/onepercent)+"%";
     }
+
+    public String numberOfDozens(int[] numbers){
+        int firstDozenCount=0;
+        int secondDozenCount=0;
+        int thirdDozenCount=0;
+        int[] firstDozen={1,2,3,4,5,6,7,8,9,10,11,12};
+        int[] secondDozen={13,14,15,16,17,18,19,20,21,22,23,24};
+        int[] thirdDozen={25,26,27,28,29,30,31,32,33,34,35,36};
+        for(int i = 1;i < 12;i++){
+            firstDozenCount += numbers[i];
+        }
+        for(int i = 13;i < 24;i++){
+            secondDozenCount += numbers[i];
+        }
+        for(int i = 25;i < 36;i++){
+            thirdDozenCount += numbers[i];
+        }
+        return "Number of numbers in the First Dozen section: "+firstDozenCount+"\nNumber of numbers in the Second Dozen section: "+secondDozenCount+"\nNumber of numbers in the Third Dozen section: "+thirdDozenCount;
+    }
 }

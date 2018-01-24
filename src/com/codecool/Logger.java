@@ -37,9 +37,12 @@ public class Logger {
         System.out.println(stat.numberOfEvenOdd(numbers)+"\n");
     }
 
+    public void dozenCounts(int[] numbers){
+        System.out.println(stat.numberOfDozens(numbers)+"\n");
+    }
     
     public void handleMenu(int simulationNumber, int greencount, int blackcount, int redcount,int[] numbers) {
-        String[] menupoints = {"Number of all simulations", "Number of colors","Number of Evens and Odds","Detailed Statistics By Colors"};
+        String[] menupoints = {"Number of all simulations", "Number of colors","Number of Evens and Odds","Detailed Statistics By Colors","Dozen zones statistics"};
         int menuChoice = 0;
         Scanner scan = new Scanner(System.in);
         boolean running = true;
@@ -61,6 +64,8 @@ public class Logger {
                     case 3: evenOddCount(numbers);
                     break;
                     case 4: finalStats(numbers, greencount, blackcount, redcount);
+                    break;
+                    case 5: dozenCounts(numbers);
                     break;
                     case 0: System.exit(0);
                     break;
