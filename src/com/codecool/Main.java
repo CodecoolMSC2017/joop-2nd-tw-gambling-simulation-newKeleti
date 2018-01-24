@@ -21,9 +21,9 @@ public class Main {
         try {
             start = System.currentTimeMillis();
             readlist = loader.load();
-            } catch(Exception e) {
+        } catch(Exception e) {
                 e.getMessage();
-                }
+            }
             end = System.currentTimeMillis();
             logger.logTimeTaken("Time it took to read data from file:", start, end);
 
@@ -41,10 +41,10 @@ public class Main {
                 list.add(sim.getResult());
                 count++;
                 happen++;
-                }
+            }
             end = System.currentTimeMillis();
             logger.logTimeTaken("Time it took to generate simulations:", start, end);
-            }
+        }
 
         if (list.size() > 0) {
             start = System.currentTimeMillis();
@@ -55,10 +55,10 @@ public class Main {
                 for (int i = 0; i < list.size(); i++) {
                     defaultCSV.generateData(list);
                 end = System.currentTimeMillis();
-                logger.logTimeTaken("Time took to write data to file:", start, end);
                 }
+                logger.logTimeTaken("Time took to write data to file:", start, end);
             }
-            }
+        }
 
 
         for (int i = 0; i < list.size(); i++) {
@@ -73,10 +73,6 @@ public class Main {
                 redcount++;
             }
         }
-        /*logger.numberOfSims((greencount+blackcount+redcount));
-        logger.finalColors(greencount, blackcount, redcount);
-        logger.evenOddCount(numbers);
-        logger.finalStats(numbers, greencount, blackcount, redcount);*/
         logger.handleMenu((greencount+blackcount+redcount), greencount, blackcount, redcount,numbers);
     }
 }
