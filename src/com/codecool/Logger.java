@@ -22,6 +22,7 @@ public class Logger {
 
     public void finalStats(int[] numbers, int greencount, int blackcount, int redcount) {
             System.out.println(stat.numberOfNumbers(numbers, greencount, blackcount, redcount)+"\n");
+            System.out.println("Betting on a single number gives you an 35-1 payout (pays your original bet PLUS 35 units)"+"\n");
     }
     
 
@@ -31,18 +32,27 @@ public class Logger {
 
     public void finalColors(int greencount, int blackcount, int redcount) {
         System.out.println(stat.numberOfColors(greencount, blackcount, redcount)+"\n");
+        System.out.println("Betting on colors gives you an 1:1 payout (pays your original bet PLUS 1 unit)"+"\n");
     }
 
     public void evenOddCount(int[] numbers){
         System.out.println(stat.numberOfEvenOdd(numbers)+"\n");
+        System.out.println("Betting on Even or Odd numbers gives you an 1-1 payout (pays your original bet PLUS 1 unit)"+"\n");
     }
 
     public void dozenCounts(int[] numbers){
         System.out.println(stat.numberOfDozens(numbers)+"\n");
+        System.out.println("Betting on the Dozen Zones gives you an 2-1 payout (pays your original bet PLUS 2 units)"+"\n");
     }
+
+    public void highAndLow(int[] numbers){
+        System.out.println(stat.highsAndLows(numbers)+"\n");
+        System.out.println("Betting on the High or Low section gives you 1-1 payout (pays your original bet PLUS 1 unit)"+"\n");
+    }
+
     
     public void handleMenu(int simulationNumber, int greencount, int blackcount, int redcount,int[] numbers) {
-        String[] menupoints = {"Number of all simulations", "Number of colors","Number of Evens and Odds","Detailed Statistics By Colors","Dozen zones statistics"};
+        String[] menupoints = {"Number of all simulations", "Number of colors","Number of Evens and Odds","Detailed Statistics By Colors","Dozen zones statistics","Numbers in the Low and High areas"};
         int menuChoice = 0;
         Scanner scan = new Scanner(System.in);
         boolean running = true;
@@ -66,6 +76,8 @@ public class Logger {
                     case 4: finalStats(numbers, greencount, blackcount, redcount);
                     break;
                     case 5: dozenCounts(numbers);
+                    break;
+                    case 6: highAndLow(numbers);
                     break;
                     case 0: System.exit(0);
                     break;

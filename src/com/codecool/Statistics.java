@@ -67,9 +67,9 @@ public class Statistics {
         double blackpercent= blacks / onepercent;
         double redpercent= reds / onepercent;
         return "Number of generated numbers by colors:"
-        +"\nGreens: "+greens+" which is "+(int)Math.round(greenpercent)+"%"
-        +"\nBlacks: "+blacks+" which is "+(int)Math.round(blackpercent)+"%"
-        +"\nReds: "+reds+" which is "+(int)Math.round(redpercent)+"%";
+        +"\nGreens: "+greens+" which is "+df2.format(greenpercent)+"%"
+        +"\nBlacks: "+blacks+" which is "+df2.format(blackpercent)+"%"
+        +"\nReds: "+reds+" which is "+df2.format(redpercent)+"%";
     }
 
     public String numberOfEvenOdd(int[] numbers){
@@ -84,17 +84,14 @@ public class Statistics {
     }
         float sums = (evencount + oddcount);
         double onepercent = sums / 100;
-        return "Number of odds: "+oddcount+" which is "+(int)Math.round(oddcount/onepercent)+"%"
-        +"\nNumber of evens: "+evencount+" which is "+(int)Math.round(evencount/onepercent)+"%";
+        return "Number of odds: "+oddcount+" which is "+df2.format(oddcount/onepercent)+"%"
+        +"\nNumber of evens: "+evencount+" which is "+df2.format(evencount/onepercent)+"%";
     }
 
     public String numberOfDozens(int[] numbers){
         int firstDozenCount=0;
         int secondDozenCount=0;
         int thirdDozenCount=0;
-        int[] firstDozen={1,2,3,4,5,6,7,8,9,10,11,12};
-        int[] secondDozen={13,14,15,16,17,18,19,20,21,22,23,24};
-        int[] thirdDozen={25,26,27,28,29,30,31,32,33,34,35,36};
         for(int i = 1;i < 12;i++){
             firstDozenCount += numbers[i];
         }
@@ -104,6 +101,22 @@ public class Statistics {
         for(int i = 25;i < 36;i++){
             thirdDozenCount += numbers[i];
         }
-        return "Number of numbers in the First Dozen section: "+firstDozenCount+"\nNumber of numbers in the Second Dozen section: "+secondDozenCount+"\nNumber of numbers in the Third Dozen section: "+thirdDozenCount;
+        float sumofnums = (firstDozenCount+secondDozenCount+thirdDozenCount);
+        double onepercent = sumofnums / 100;
+        return "Number of numbers in the First Dozen section: "+firstDozenCount+" which is "+df2.format(firstDozenCount/onepercent)+"%"+"\nNumber of numbers in the Second Dozen section: "+secondDozenCount+" which is "+df2.format(secondDozenCount/onepercent)+"%"+"\nNumber of numbers in the Third Dozen section: "+thirdDozenCount+" which is "+df2.format(thirdDozenCount/onepercent)+"%";
+    }
+
+    public String highsAndLows(int[] numbers){
+        int highCount = 0;
+        int lowCount = 0;
+        for(int i = 1; i<18;i++){
+            lowCount+=numbers[i];
+        }
+        for(int i = 19; i<36;i++){
+            highCount+=numbers[i];
+        }
+        float sumofnums = (lowCount+highCount);
+        double onepercent = sumofnums / 100;
+        return "Number of numbers in the Low section: "+lowCount+" which is "+df2.format(lowCount/onepercent)+"%"+"\nNumber of numbers in the hight section: "+highCount+" which is "+df2.format(highCount/onepercent)+"%";
     }
 }
