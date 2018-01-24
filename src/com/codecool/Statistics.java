@@ -119,4 +119,21 @@ public class Statistics {
         double onepercent = sumofnums / 100;
         return "Number of numbers in the Low section: "+lowCount+" which is "+df2.format(lowCount/onepercent)+"%"+"\nNumber of numbers in the hight section: "+highCount+" which is "+df2.format(highCount/onepercent)+"%";
     }
+    public String columns(int[]numbers){
+        int firstColumnCount=0;
+        int secondColumnCount=0;
+        int thirdColumnCount=0;
+        for(int i = 1;i< 34; i+=3){
+            firstColumnCount+=numbers[i];
+        }
+        for(int i = 2;i< 35; i+=3){
+            secondColumnCount+=numbers[i];
+        }
+        for(int i = 3;i< 36; i+=3){
+            thirdColumnCount+=numbers[i];
+        }
+        float sumofnums = (firstColumnCount+secondColumnCount+thirdColumnCount);
+        double onepercent = sumofnums / 100;
+        return "Number of numbers in the first column section: "+firstColumnCount+" which is "+df2.format(firstColumnCount/onepercent)+"%"+"\nNumber of numbers in the second column section: "+secondColumnCount+" which is "+df2.format(secondColumnCount/onepercent)+"%"+"\nNumber of numbers in the third column section: "+thirdColumnCount+" which is "+df2.format(thirdColumnCount/onepercent)+"%";
+    }
 }
