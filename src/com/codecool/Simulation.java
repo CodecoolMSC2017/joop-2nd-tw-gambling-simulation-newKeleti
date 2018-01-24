@@ -30,12 +30,12 @@ public class Simulation {
 
     public void generateData(ArrayList<String> list) {
         try {
-            PrintWriter pw = new PrintWriter(new FileOutputStream("data/data.csv"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter("data/data.csv"));
             for (String str : list) {
-                pw.println(str);
+                writer.write(str+"\n");
             }
-            pw.close();
-        } catch (Exception ex) {
+            writer.close();
+        } catch (IOException ex) {
             ex.getMessage();
         }
     }
