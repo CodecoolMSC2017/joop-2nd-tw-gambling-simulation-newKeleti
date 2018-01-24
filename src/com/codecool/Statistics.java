@@ -86,6 +86,9 @@ public class Statistics {
             oddcount+=numbers[i];
         }
     }
-        return "Number of odds: "+oddcount+"\nNumber of evens: "+evencount;
+        float sums = (evencount + oddcount);
+        double onepercent = sums / 100;
+        return "Number of odds: "+oddcount+" which is "+(int)Math.round(oddcount/onepercent)+"%"
+        +"\nNumber of evens: "+evencount+" which is "+(int)Math.round(evencount/onepercent)+"%";
     }
 }

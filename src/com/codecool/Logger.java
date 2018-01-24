@@ -1,6 +1,6 @@
 package com.codecool;
 
-import java.util.Scanner;
+import java.util.*;
 
 public class Logger {
 
@@ -13,7 +13,7 @@ public class Logger {
     private int simulationNumber;
 
     public void logTimeTaken(String message, long start, long end) {
-        System.out.println(stat.simulationTime(message, start, end));
+        System.out.println(stat.simulationTime(message, start, end)+"\n");
     }
 
     public void simulationInit(int number) {
@@ -34,14 +34,42 @@ public class Logger {
     }
 
     public void numberOfSims(int simulationNumber) {
-        System.out.println("Number of simulations considered in the statistics: "+simulationNumber);
+        System.out.println("Number of simulations considered in the statistics: "+simulationNumber+"\n");
     }
 
     public void finalColors(int greencount, int blackcount, int redcount) {
-        System.out.println(stat.numberOfColors(greencount, blackcount, redcount));
+        System.out.println(stat.numberOfColors(greencount, blackcount, redcount)+"\n");
     }
 
     public void evenOddCount(int[] numbers){
         System.out.println(stat.numberOfEvenOdd(numbers));
+    }
+
+    public void handleMenu(int simulationNumber, int greencount, int blackcount, int redcount) {
+        String[] menupoints = {"Number of all simulations", "Number of colors"};
+        int menuChoice = 0;
+        Scanner scan = new Scanner(System.in);
+        boolean running = true;
+        while (running) {
+            System.out.println("--- Main menu ---");
+            for (int i = 0; i < menupoints.length; i++) {
+                System.out.println("("+(i+1)+"). "+menupoints[i]);
+            }
+            System.out.println("(0). Exit");
+            System.out.print("\nSelect statistic: ");
+
+            try {
+                menuChoice = Integer.parseInt(scan.nextLine());    
+                switch (menuChoice) {
+                    case 1: numberOfSims(simulationNumber);
+                    break;
+                    case 2: finalColors(greencount, blackcount, redcount);
+                    break;
+                    case 0: System.exit(0);
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Please enter a valid menupoint.\n");
+            }
+        }
     }
 }

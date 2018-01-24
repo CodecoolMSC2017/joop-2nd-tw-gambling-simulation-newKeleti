@@ -54,10 +54,10 @@ public class Main {
             if (happen > 0) {
                 for (int i = 0; i < list.size(); i++) {
                     defaultCSV.generateData(list);
+                end = System.currentTimeMillis();
+                logger.logTimeTaken("Time took to write data to file:", start, end);
                 }
             }
-            end = System.currentTimeMillis();
-            logger.logTimeTaken("Time took to write data to file:", start, end);
             }
 
 
@@ -73,9 +73,10 @@ public class Main {
                 redcount++;
             }
         }
-        logger.numberOfSims((greencount+blackcount+redcount));
+        /*logger.numberOfSims((greencount+blackcount+redcount));
         logger.finalColors(greencount, blackcount, redcount);
         logger.evenOddCount(numbers);
-        logger.finalStats(numbers, greencount, blackcount, redcount);
+        logger.finalStats(numbers, greencount, blackcount, redcount);*/
+        logger.handleMenu((greencount+blackcount+redcount), greencount, blackcount, redcount);
     }
 }
