@@ -73,6 +73,6 @@ public class Main {
                 redcount++;
             }
         }
-        logger.handleMenu((greencount+blackcount+redcount), greencount, blackcount, redcount,numbers);
+        logger.handleMainMenu((greencount+blackcount+redcount), greencount, blackcount, redcount,numbers);
     }
 }

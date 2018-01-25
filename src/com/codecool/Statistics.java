@@ -10,6 +10,7 @@ public class Statistics {
     private int[] numbers;
     private String message;
     private int blacks, reds, greens;
+    private int firstDozenCount = 0,secondDozenCount= 0,thirdDozenCount= 0;
 
     public String allSimulation(ArrayList<String> list) {
         return "Number of all simulations considered in the statistics: "+Integer.toString(list.size());
@@ -88,19 +89,20 @@ public class Statistics {
         +"\nNumber of evens: "+evencount+" which is "+df2.format(evencount/onepercent)+"%";
     }
 
-    public String numberOfDozens(int[] numbers){
-        int firstDozenCount=0;
-        int secondDozenCount=0;
-        int thirdDozenCount=0;
+    public String numberOfDozens(int[] numbers,int firstDozenCount,int secondDozenCount,int thirdDozenCount){
+        
         for(int i = 1;i < 12;i++){
-            firstDozenCount += numbers[i];
+            this.firstDozenCount += numbers[i];
         }
         for(int i = 13;i < 24;i++){
-            secondDozenCount += numbers[i];
+            this.secondDozenCount += numbers[i];
         }
         for(int i = 25;i < 36;i++){
-            thirdDozenCount += numbers[i];
+            this.thirdDozenCount += numbers[i];
         }
+        firstDozenCount= this.firstDozenCount;
+        secondDozenCount= this.secondDozenCount;
+        thirdDozenCount= this.thirdDozenCount;
         float sumofnums = (firstDozenCount+secondDozenCount+thirdDozenCount);
         double onepercent = sumofnums / 100;
         return "Number of numbers in the First Dozen section: "+firstDozenCount+" which is "+df2.format(firstDozenCount/onepercent)+"%"+"\nNumber of numbers in the Second Dozen section: "+secondDozenCount+" which is "+df2.format(secondDozenCount/onepercent)+"%"+"\nNumber of numbers in the Third Dozen section: "+thirdDozenCount+" which is "+df2.format(thirdDozenCount/onepercent)+"%";
@@ -246,5 +248,21 @@ public class Statistics {
         finalResult += "\n╚═══════════════════╩═══════════════════╝\n";
         finalResult += "\nBest split: "+firstnumber+", "+secondnumber+" which occurred "+best+" times.";
         return finalResult;
+    }
+    public int getFirstDozen(){
+        return firstDozenCount;
+    }
+
+    public int getSecondDozen(){
+        return secondDozenCount;
+    }
+    public int getThirdDozen(){
+        return thirdDozenCount;
+    }
+    public int getHighCount(){
+        return 0;
+    }
+    public int getLowCount(){
+        return 0;
     }
 }
