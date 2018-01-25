@@ -151,13 +151,6 @@ public class Statistics {
             }
         }
 
-        for (int i = 0; i < 12; i++) {
-            for (int j = 0; j < 3; j++) {
-                System.out.print(occnum[i][j]+"\t");
-            }
-            System.out.println();
-        }
-
         int best = 0;
         int firstnumber = 0;
         int secondnumber = 0;
@@ -194,11 +187,63 @@ public class Statistics {
                 }
             }
         }
-        String finalResult = "\n";
+
+        String finalResult = "╔═══════════════════════════════════════╗";
+        finalResult += "\n║\t --- DETAILED SPLITS --- \t║";
+
+        count = 0;
         for (int i = 0; i < splitResults.size(); i++) {
-            finalResult += (i+1)+". "+splitResults.get(i);
-            finalResult += "\n";
+            try {
+                String strToAdd = "["+(i+1)+":"+(i+2)+"] --> "+splitResults.get(i)+"["+(i+1)+":"+(i+4)+"] --> "+splitResults.get(i+1);
+                if (i == 0) {
+                    finalResult += "\n╠═══════════════════╦═══════════════════╣";
+                } else {
+                    finalResult += "\n╠═══════════════════╬═══════════════════╣";
+                }
+                switch (strToAdd.length()) {
+                    case 24: 
+                    finalResult += "\n║   ["+(i+1)+":"+(i+2)+"] --> "+splitResults.get(count)+"    ║";
+                    if (i == 34) {
+                        finalResult += "\t\t\t║";
+                        break;
+                    }
+                    finalResult += "\t["+(i+1)+":"+(i+4)+"] --> "+splitResults.get(count+1)+"    ║";
+                    break;
+                    case 25:
+                    finalResult += "\n║   ["+(i+1)+":"+(i+2)+"] --> "+splitResults.get(count)+"    ║";
+                        if (i == 34) {
+                        finalResult += "\t\t\t║";
+                        break;
+                    }
+                    finalResult += "\t["+(i+1)+":"+(i+4)+"] --> "+splitResults.get(count+1)+"   ║";
+                    break;
+                    case 26:
+                    finalResult += "\n║   ["+(i+1)+":"+(i+2)+"] --> "+splitResults.get(count)+"   ║";
+                        if (i == 34) {
+                        finalResult += "\t\t\t║";
+                        break;
+                    }
+                    finalResult += "\t["+(i+1)+":"+(i+4)+"] --> "+splitResults.get(count+1)+"   ║";
+                    break;
+                    case 28:
+                    finalResult += "\n║   ["+(i+1)+":"+(i+2)+"] --> "+splitResults.get(count)+"  ║";
+                        if (i == 34) {
+                        finalResult += "\t\t\t║";
+                        break;
+                    }
+                    finalResult += "\t["+(i+1)+":"+(i+4)+"] --> "+splitResults.get(count+1)+"  ║";
+                    break;
+                }
+                count++;
+                if (i == 34) {
+                    break;
+                }
+                
+            } catch (IndexOutOfBoundsException e) {
+                e.getMessage();
+            }
         }
+        finalResult += "\n╚═══════════════════╩═══════════════════╝\n";
         finalResult += "\nBest split: "+firstnumber+", "+secondnumber+" which occurred "+best+" times.";
         return finalResult;
     }
