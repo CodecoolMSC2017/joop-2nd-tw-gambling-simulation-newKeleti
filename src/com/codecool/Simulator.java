@@ -12,14 +12,14 @@ public class Simulator {
 
     public Simulator(int green, int[] blacks, int[] reds) {
         Random rand = new Random();
-        int ran = rand.nextInt(100);
+        int ran = rand.nextInt(38);
 
-        if (ran < 50) {
+        if (ran > 0 && ran < 17) {
             ran = rand.nextInt(18);
             winnernum = blacks[ran];
             winnerCol = "Black";
         }
-        else if (ran == 50) {
+        else if (ran == 0) {
             winnernum = green;
             winnerCol = "Green";
         } else {

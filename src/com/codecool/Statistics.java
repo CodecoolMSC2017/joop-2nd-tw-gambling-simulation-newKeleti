@@ -80,8 +80,8 @@ public class Statistics {
                 evencount+=numbers[i];
             }else{
             oddcount+=numbers[i];
+            }
         }
-    }
         float sums = (evencount + oddcount);
         double onepercent = sums / 100;
         return "Number of odds: "+oddcount+" which is "+df2.format(oddcount/onepercent)+"%"
@@ -119,6 +119,7 @@ public class Statistics {
         double onepercent = sumofnums / 100;
         return "Number of numbers in the Low section: "+lowCount+" which is "+df2.format(lowCount/onepercent)+"%"+"\nNumber of numbers in the hight section: "+highCount+" which is "+df2.format(highCount/onepercent)+"%";
     }
+
     public String columns(int[]numbers){
         int firstColumnCount=0;
         int secondColumnCount=0;
@@ -135,5 +136,70 @@ public class Statistics {
         float sumofnums = (firstColumnCount+secondColumnCount+thirdColumnCount);
         double onepercent = sumofnums / 100;
         return "Number of numbers in the first column section: "+firstColumnCount+" which is "+df2.format(firstColumnCount/onepercent)+"%"+"\nNumber of numbers in the second column section: "+secondColumnCount+" which is "+df2.format(secondColumnCount/onepercent)+"%"+"\nNumber of numbers in the third column section: "+thirdColumnCount+" which is "+df2.format(thirdColumnCount/onepercent)+"%";
+    }
+
+    public String splits(int[] numbers) {
+        int count = 1;
+        int[][] occnum = new int[12][3];
+        ArrayList <Integer> splitResults = new ArrayList<>();
+
+        count = 1;
+        for (int i = 0; i < 12; i++) {
+            for (int j = 0; j < 3; j++) {
+                occnum[i][j] = numbers[count];
+                count++;
+            }
+        }
+
+        for (int i = 0; i < 12; i++) {
+            for (int j = 0; j < 3; j++) {
+                System.out.print(occnum[i][j]+"\t");
+            }
+            System.out.println();
+        }
+
+        int best = 0;
+        int firstnumber = 0;
+        int secondnumber = 0;
+        for (int i = 0; i < 12; i++) {
+            for (int j = 0; j < 3; j++) {
+                try {
+                    splitResults.add(occnum[i][j] + occnum[i][j+1]);
+                    if (occnum[i][j] + occnum[i][j+1] > best) {
+                        best = occnum[i][j] + occnum[i][j+1];
+                        for (int k = 0; k < numbers.length; k++) {
+                            if (numbers[k] == occnum[i][j]) {
+                                firstnumber = k;
+                                secondnumber = k + 1;
+                            }
+                        }
+                    }
+                } catch (IndexOutOfBoundsException e) {
+                    e.getMessage();
+                }
+                
+                try {
+                    splitResults.add(occnum[i][j] + occnum[i+1][j]);
+                    if (occnum[i][j] + occnum[i+1][j] > best) {
+                        best = occnum[i][j] + occnum[i+1][j];
+                        for (int k = 0; k < numbers.length; k++) {
+                            if (numbers[k] == occnum[i][j]) {
+                                firstnumber = k;
+                                secondnumber = k + 3;
+                            }
+                        }
+                    } 
+                } catch (IndexOutOfBoundsException e) {
+                    e.getMessage();
+                }
+            }
+        }
+        String finalResult = "\n";
+        for (int i = 0; i < splitResults.size(); i++) {
+            finalResult += (i+1)+". "+splitResults.get(i);
+            finalResult += "\n";
+        }
+        finalResult += "\nBest split: "+firstnumber+", "+secondnumber+" which occurred "+best+" times.";
+        return finalResult;
     }
 }

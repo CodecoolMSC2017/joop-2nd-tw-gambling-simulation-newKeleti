@@ -55,8 +55,13 @@ public class Logger {
         System.out.println("Betting on any of the columns will give you an 2-1 payout (pays your original bet PLUS 2 units)"+"\n");
     }
 
+    public void splitCount(int[] numbers) {
+        System.out.println(stat.splits(numbers)+"\n");
+        System.out.println("Betting on any split will give you an 17-1 payout (pays your original bet PLUS 17 units)"+"\n");
+    }
+
     public void handleMenu(int simulationNumber, int greencount, int blackcount, int redcount,int[] numbers) {
-        String[] menupoints = {"Number of all simulations", "Number of colors","Number of Evens and Odds","Detailed Statistics By Colors","Dozen zones statistics","Numbers in the Low and High areas","Column bet statistics"};
+        String[] menupoints = {"Number of all simulations", "Number of colors","Number of Evens and Odds","Detailed Statistics By Colors","Dozen zones statistics","Numbers in the Low and High areas","Column bet statistics", "Split statistics"};
         int menuChoice = 0;
         Scanner scan = new Scanner(System.in);
         boolean running = true;
@@ -84,6 +89,8 @@ public class Logger {
                     case 6: highAndLow(numbers);
                     break;
                     case 7: columnCount(numbers);
+                    break;
+                    case 8: splitCount(numbers);
                     break;
                     case 0: System.exit(0);
                     break;
