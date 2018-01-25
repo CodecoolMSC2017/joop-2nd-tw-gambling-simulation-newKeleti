@@ -47,7 +47,7 @@ public class Logger {
     }
 
     public void highAndLow(int[] numbers){
-        System.out.println(stat.highsAndLows(numbers)+"\n");
+        System.out.println(stat.highsAndLows(numbers,0,0)+"\n");
         System.out.println("Betting on the High or Low section gives you 1-1 payout (pays your original bet PLUS 1 unit)"+"\n");
     }
 
@@ -151,7 +151,7 @@ public class Logger {
     }
 
     public void handleResultMenu(int greencount, int blackcount, int redcount,int[] numbers) {
-        String[] menupoints = {"Best color to bet", "Best number to bet","Best dozen to bet",};
+        String[] menupoints = {"Best color to bet", "Best number to bet","Best dozen to bet","Best Zone to bet",};
         int menuChoice = 0;
         Scanner scan = new Scanner(System.in);
         boolean running = true;
@@ -177,6 +177,11 @@ public class Logger {
                     int thirdDozenCount = stat.getThirdDozen(); 
                     bestDozen(firstDozenCount, secondDozenCount, thirdDozenCount);
                     break;
+                    case 4: 
+                    stat.highsAndLows(numbers,0,0);
+                    int highCount = stat.getHighCount();
+                    int lowCount = stat.getLowCount();
+                    bestSection(highCount, lowCount);
                     case 0: System.exit(0);
                     break;
                     default: System.out.println("Please enter a valid menupoint.\n");
