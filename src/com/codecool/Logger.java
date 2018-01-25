@@ -80,6 +80,10 @@ public class Logger {
         System.out.println(res.columns(firstColumnCount, secondColumnCount, thirdColumnCount));
     }
 
+    public void bestSplit(int firstnumber, int secondnumber, int best) {
+        System.out.println(res.bestSplit(firstnumber, secondnumber, best)+"\n");
+    }
+
     public void handleStatMenu(int simulationNumber, int greencount, int blackcount, int redcount,int[] numbers) {
         String[] menupoints = {"Number of all simulations", "Number of colors","Number of Evens and Odds","Detailed Statistics By Colors","Dozen zones statistics","Numbers in the Low and High areas","Column bet statistics", "Split statistics"};
         int menuChoice = 0;
@@ -154,7 +158,7 @@ public class Logger {
     }
 
     public void handleResultMenu(int greencount, int blackcount, int redcount,int[] numbers) {
-        String[] menupoints = {"Best color to bet", "Best number to bet","Best dozen to bet","Best Zone to bet","Best column to bet"};
+        String[] menupoints = {"Best color to bet", "Best number to bet","Best dozen to bet","Best Zone to bet","Best column to bet","Best split option"};
         int menuChoice = 0;
         Scanner scan = new Scanner(System.in);
         boolean running = true;
@@ -192,6 +196,11 @@ public class Logger {
                     int thirdColumnCount = stat.getThirdColumnCount();
                     bestColumn(firstColumnCount, secondColumnCount, thirdColumnCount);
                     break;
+                    case 6:stat.splits(numbers);
+                    int firstnumber = stat.getFirstNumberForSplit();
+                    int secondnumber = stat.getSecondNumberForSplit();
+                    int best = stat.getBestForSplit();
+                    bestSplit(firstnumber, secondnumber, best);
                     case 0: handleMainMenu((greencount+blackcount+redcount), greencount, blackcount, redcount,numbers);
                     break;
                     default: System.out.println("Please enter a valid menupoint.\n");

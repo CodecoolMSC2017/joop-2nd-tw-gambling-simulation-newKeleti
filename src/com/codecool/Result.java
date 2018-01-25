@@ -80,4 +80,8 @@ public class Result {
         }
         return "The most frequent column is "+winner+" with "+biggest+" number of occurences";
     }
+
+    public String bestSplit(int firstnumber, int secondnumber, int best) {
+        return "The best split combo is ["+firstnumber+":"+secondnumber+"], with "+best+" number of occurrences.";
+    }
 }

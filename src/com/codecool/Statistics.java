@@ -13,6 +13,7 @@ public class Statistics {
     private int firstDozenCount = 0, secondDozenCount = 0, thirdDozenCount = 0;
     private int highCount=0,lowCount=0;
     private int firstColumnCount=0, secondColumnCount=0, thirdColumnCount=0;
+    private int firstnumber = 0, secondnumber = 0, best = 0;
     
 
     public String allSimulation(ArrayList<String> list) {
@@ -161,19 +162,16 @@ public class Statistics {
             }
         }
 
-        int best = 0;
-        int firstnumber = 0;
-        int secondnumber = 0;
         for (int i = 0; i < 12; i++) {
             for (int j = 0; j < 3; j++) {
                 try {
                     splitResults.add(occnum[i][j] + occnum[i][j+1]);
                     if (occnum[i][j] + occnum[i][j+1] > best) {
-                        best = occnum[i][j] + occnum[i][j+1];
+                        this.best = occnum[i][j] + occnum[i][j+1];
                         for (int k = 0; k < numbers.length; k++) {
                             if (numbers[k] == occnum[i][j]) {
-                                firstnumber = k;
-                                secondnumber = k + 1;
+                                this.firstnumber = k;
+                                this.secondnumber = k + 1;
                             }
                         }
                     }
@@ -184,11 +182,11 @@ public class Statistics {
                 try {
                     splitResults.add(occnum[i][j] + occnum[i+1][j]);
                     if (occnum[i][j] + occnum[i+1][j] > best) {
-                        best = occnum[i][j] + occnum[i+1][j];
+                        this.best = occnum[i][j] + occnum[i+1][j];
                         for (int k = 0; k < numbers.length; k++) {
                             if (numbers[k] == occnum[i][j]) {
-                                firstnumber = k;
-                                secondnumber = k + 3;
+                                this.firstnumber = k;
+                                this.secondnumber = k + 3;
                             }
                         }
                     } 
@@ -198,23 +196,9 @@ public class Statistics {
             }
         }
 
-        //#######
-        for (int i = 0; i < 12; i++) {
-            for (int j = 0; j < 3; j++) {
-                System.out.print(occnum[i][j]+"\t");
-            }
-            System.out.println();
-        }
-
         String finalResult = "╔═══════════════════════════════════════╗";
         finalResult += "\n║\t --- DETAILED SPLITS --- \t║";
 
-        //for (int i = 0; i < splitResults.size(); i++) {
-        //    System.out.print(i+". ");
-        //    System.out.println(splitResults.get(i));
-        //}
-
-        //System.out.println(splitResults.size());
         count = 1;
         int index = 1;
         for (int i = 0; i < 33; i++) {
@@ -328,11 +312,28 @@ public class Statistics {
             }
             index++;
         }
+
+        firstnumber = this.firstnumber;
+        secondnumber = this.secondnumber;
+        best = this.best;
+
         finalResult += "\n╚═══════════════════╩═══════════════════╝\n";
-        finalResult += "\nBest split: "+firstnumber+", "+secondnumber+" which occurred "+best+" times.";
+        //finalResult += "\nBest split: "+firstnumber+", "+secondnumber+" which occurred "+best+" times.";
         return finalResult;
     }
 
+    public int getFirstNumberForSplit() {
+        return firstnumber;
+    }
+
+    public int getSecondNumberForSplit() {
+        return secondnumber;
+    }
+
+    public int getBestForSplit() {
+        return best;
+    }
+    
     public int getFirstDozen(){
         return firstDozenCount;
     }
