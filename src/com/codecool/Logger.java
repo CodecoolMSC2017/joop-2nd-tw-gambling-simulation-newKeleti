@@ -47,7 +47,7 @@ public class Logger {
     }
 
     public void highAndLow(int[] numbers){
-        System.out.println(stat.highsAndLows(numbers,0,0)+"\n");
+        System.out.println(stat.highsAndLows(numbers)+"\n");
         System.out.println("Betting on the High or Low section gives you 1-1 payout (pays your original bet PLUS 1 unit)"+"\n");
     }
 
@@ -76,6 +76,9 @@ public class Logger {
     public void bestSection(int highCount,int lowCount){
         System.out.println(res.highOrLow(lowCount, highCount));
     }
+    public void bestColumn(int firstColumnCount,int secondColumnCount,int thirdColumnCount){
+        System.out.println(res.columns(firstColumnCount, secondColumnCount, thirdColumnCount));
+    }
 
     public void handleStatMenu(int simulationNumber, int greencount, int blackcount, int redcount,int[] numbers) {
         String[] menupoints = {"Number of all simulations", "Number of colors","Number of Evens and Odds","Detailed Statistics By Colors","Dozen zones statistics","Numbers in the Low and High areas","Column bet statistics", "Split statistics"};
@@ -83,7 +86,7 @@ public class Logger {
         Scanner scan = new Scanner(System.in);
         boolean running = true;
         while (running) {
-            System.out.println("--- Main menu ---");
+            System.out.println("--- Statistics menu ---");
             for (int i = 0; i < menupoints.length; i++) {
                 System.out.println("("+(i+1)+"). "+menupoints[i]);
             }
@@ -109,7 +112,7 @@ public class Logger {
                     break;
                     case 8: splitCount(numbers);
                     break;
-                    case 0: System.exit(0);
+                    case 0: handleMainMenu((greencount+blackcount+redcount), greencount, blackcount, redcount,numbers);
                     break;
                     default: System.out.println("Please enter a valid menupoint.\n");
                 }
@@ -135,7 +138,7 @@ public class Logger {
             try {
                 menuChoice = Integer.parseInt(scan.nextLine());    
                 switch (menuChoice){
-                    case 1: handleStatMenu((greencount+blackcount+redcount), greencount, blackcount, redcount,numbers);
+                    case 1:handleStatMenu((greencount+blackcount+redcount), greencount, blackcount, redcount,numbers);
                     break;
                     case 2:handleResultMenu(greencount, blackcount, redcount, numbers);
                     break;
@@ -151,12 +154,12 @@ public class Logger {
     }
 
     public void handleResultMenu(int greencount, int blackcount, int redcount,int[] numbers) {
-        String[] menupoints = {"Best color to bet", "Best number to bet","Best dozen to bet","Best Zone to bet",};
+        String[] menupoints = {"Best color to bet", "Best number to bet","Best dozen to bet","Best Zone to bet","Best column to bet"};
         int menuChoice = 0;
         Scanner scan = new Scanner(System.in);
         boolean running = true;
         while (running) {
-            System.out.println("--- Main menu ---");
+            System.out.println("--- Result menu ---");
             for (int i = 0; i < menupoints.length; i++) {
                 System.out.println("("+(i+1)+"). "+menupoints[i]);
             }
@@ -177,12 +180,19 @@ public class Logger {
                     int thirdDozenCount = stat.getThirdDozen(); 
                     bestDozen(firstDozenCount, secondDozenCount, thirdDozenCount);
                     break;
-                    case 4: 
-                    stat.highsAndLows(numbers,0,0);
+                    case 4:
+                    stat.highsAndLows(numbers); 
                     int highCount = stat.getHighCount();
                     int lowCount = stat.getLowCount();
                     bestSection(highCount, lowCount);
-                    case 0: System.exit(0);
+                    break;
+                    case 5:stat.columns(numbers, 0, 0, 0);
+                    int firstColumnCount= stat.getFirstColumnCount();
+                    int secondColumnCount = stat.getSecondColumnCount();
+                    int thirdColumnCount = stat.getThirdColumnCount();
+                    bestColumn(firstColumnCount, secondColumnCount, thirdColumnCount);
+                    break;
+                    case 0: handleMainMenu((greencount+blackcount+redcount), greencount, blackcount, redcount,numbers);
                     break;
                     default: System.out.println("Please enter a valid menupoint.\n");
                 }

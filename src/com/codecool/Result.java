@@ -63,6 +63,21 @@ public class Result {
             biggest= highCount;
             winner= "High section";
         }
-        return"The most frequent section is "+winner+" with "+biggest+" number of occurences";
+        return "The most frequent section is "+winner+" with "+biggest+" number of occurences";
+    }
+    public String columns(int firstColumnCount,int secondColumnCount,int thirdColumnCount){
+        int biggest= 0;
+        String winner = "";
+        if(firstColumnCount > secondColumnCount && firstColumnCount > thirdColumnCount){
+            biggest = firstColumnCount;
+            winner = "First Column";
+        }else if (secondColumnCount > firstColumnCount && secondColumnCount > thirdColumnCount){
+            biggest = secondColumnCount;
+            winner = "Second Column";
+        }else{
+            biggest = thirdColumnCount;
+            winner = "Third Column";
+        }
+        return "The most frequent column is "+winner+" with "+biggest+" number of occurences";
     }
 }

@@ -13,7 +13,7 @@ public class Statistics {
     private int firstDozenCount = 0, secondDozenCount = 0, thirdDozenCount = 0;
     private int highCount=0,lowCount=0;
     private int firstColumnCount=0, secondColumnCount=0, thirdColumnCount=0;
-
+    
 
     public String allSimulation(ArrayList<String> list) {
         return "Number of all simulations considered in the statistics: "+Integer.toString(list.size());
@@ -93,7 +93,9 @@ public class Statistics {
     }
 
     public String numberOfDozens(int[] numbers,int firstDozenCount,int secondDozenCount,int thirdDozenCount){
-        
+        this.firstDozenCount=0;
+        this.secondDozenCount=0;
+        this.thirdDozenCount=0;
         for(int i = 1;i < 12;i++){
             this.firstDozenCount += numbers[i];
         }
@@ -111,22 +113,24 @@ public class Statistics {
         return "Number of numbers in the First Dozen section: "+firstDozenCount+" which is "+df2.format(firstDozenCount/onepercent)+"%"+"\nNumber of numbers in the Second Dozen section: "+secondDozenCount+" which is "+df2.format(secondDozenCount/onepercent)+"%"+"\nNumber of numbers in the Third Dozen section: "+thirdDozenCount+" which is "+df2.format(thirdDozenCount/onepercent)+"%";
     }
 
-    public String highsAndLows(int[] numbers,int lowCount,int highCount){
-    
+    public String highsAndLows(int[] numbers){
+        this.lowCount=0;
+        this.highCount=0;
         for(int i = 1; i<18;i++){
             this.lowCount+=numbers[i];
         }
         for(int i = 19; i<36;i++){
             this.highCount+=numbers[i];
         }
-        lowCount= this.lowCount;
-        highCount = this.highCount;
         float sumofnums = (lowCount+highCount);
         double onepercent = sumofnums / 100;
         return "Number of numbers in the Low section: "+lowCount+" which is "+df2.format(lowCount/onepercent)+"%"+"\nNumber of numbers in the hight section: "+highCount+" which is "+df2.format(highCount/onepercent)+"%";
     }
 
     public String columns(int[]numbers,int firstColumnCount,int secondColumnCount,int thirdColumnCount){
+        this.firstColumnCount=0;
+        this.secondColumnCount=0;
+        this.thirdColumnCount=0;
         for(int i = 1;i< 34; i+=3){
             this.firstColumnCount+=numbers[i];
         }
@@ -353,5 +357,6 @@ public class Statistics {
     }
     public int getThirdColumnCount(){
         return thirdColumnCount;
-    }
+    }   
+
 }
