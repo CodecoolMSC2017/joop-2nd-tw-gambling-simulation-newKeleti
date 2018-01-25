@@ -10,8 +10,10 @@ public class Statistics {
     private int[] numbers;
     private String message;
     private int blacks, reds, greens;
-    private int firstDozenCount = 0,secondDozenCount= 0,thirdDozenCount= 0;
+    private int firstDozenCount = 0, secondDozenCount = 0, thirdDozenCount = 0;
     private int highCount=0,lowCount=0;
+    private int firstColumnCount=0, secondColumnCount=0, thirdColumnCount=0;
+
 
     public String allSimulation(ArrayList<String> list) {
         return "Number of all simulations considered in the statistics: "+Integer.toString(list.size());
@@ -110,7 +112,7 @@ public class Statistics {
     }
 
     public String highsAndLows(int[] numbers,int lowCount,int highCount){
-        
+    
         for(int i = 1; i<18;i++){
             this.lowCount+=numbers[i];
         }
@@ -124,19 +126,19 @@ public class Statistics {
         return "Number of numbers in the Low section: "+lowCount+" which is "+df2.format(lowCount/onepercent)+"%"+"\nNumber of numbers in the hight section: "+highCount+" which is "+df2.format(highCount/onepercent)+"%";
     }
 
-    public String columns(int[]numbers){
-        int firstColumnCount=0;
-        int secondColumnCount=0;
-        int thirdColumnCount=0;
+    public String columns(int[]numbers,int firstColumnCount,int secondColumnCount,int thirdColumnCount){
         for(int i = 1;i< 34; i+=3){
-            firstColumnCount+=numbers[i];
+            this.firstColumnCount+=numbers[i];
         }
         for(int i = 2;i< 35; i+=3){
-            secondColumnCount+=numbers[i];
+            this.secondColumnCount+=numbers[i];
         }
         for(int i = 3;i< 36; i+=3){
-            thirdColumnCount+=numbers[i];
+            this.thirdColumnCount+=numbers[i];
         }
+        firstColumnCount = this.firstColumnCount;
+        secondColumnCount = this.secondColumnCount;
+        thirdColumnCount = this.thirdColumnCount;
         float sumofnums = (firstColumnCount+secondColumnCount+thirdColumnCount);
         double onepercent = sumofnums / 100;
         return "Number of numbers in the first column section: "+firstColumnCount+" which is "+df2.format(firstColumnCount/onepercent)+"%"+"\nNumber of numbers in the second column section: "+secondColumnCount+" which is "+df2.format(secondColumnCount/onepercent)+"%"+"\nNumber of numbers in the third column section: "+thirdColumnCount+" which is "+df2.format(thirdColumnCount/onepercent)+"%";
@@ -192,13 +194,28 @@ public class Statistics {
             }
         }
 
+        //#######
+        for (int i = 0; i < 12; i++) {
+            for (int j = 0; j < 3; j++) {
+                System.out.print(occnum[i][j]+"\t");
+            }
+            System.out.println();
+        }
+
         String finalResult = "╔═══════════════════════════════════════╗";
         finalResult += "\n║\t --- DETAILED SPLITS --- \t║";
 
-        count = 0;
-        for (int i = 0; i < splitResults.size(); i++) {
+        //for (int i = 0; i < splitResults.size(); i++) {
+        //    System.out.print(i+". ");
+        //    System.out.println(splitResults.get(i));
+        //}
+
+        //System.out.println(splitResults.size());
+        count = 1;
+        int index = 1;
+        for (int i = 0; i < 33; i++) {
             try {
-                String strToAdd = "["+(i+1)+":"+(i+2)+"] --> "+splitResults.get(i)+"["+(i+1)+":"+(i+4)+"] --> "+splitResults.get(i+1);
+                String strToAdd = "["+(i+1)+":"+(i+2)+"] --> "+splitResults.get(count-1)+"["+(i+1)+":"+(i+4)+"] --> "+splitResults.get(count-1);
                 if (i == 0) {
                     finalResult += "\n╠═══════════════════╦═══════════════════╣";
                 } else {
@@ -206,51 +223,112 @@ public class Statistics {
                 }
                 switch (strToAdd.length()) {
                     case 24: 
-                    finalResult += "\n║   ["+(i+1)+":"+(i+2)+"] --> "+splitResults.get(count)+"    ║";
-                    if (i == 34) {
-                        finalResult += "\t\t\t║";
+                    if (index % 3 != 0) {
+                        finalResult += "\n║   ["+(i+1)+":"+(i+2)+"] --> "+splitResults.get(count-1)+"    ║";
+                        count++;
+                        finalResult += "\t["+(i+1)+":"+(i+4)+"] --> "+splitResults.get(count-1)+"    ║";
+                        count++;
                         break;
-                    }
-                    finalResult += "\t["+(i+1)+":"+(i+4)+"] --> "+splitResults.get(count+1)+"    ║";
-                    break;
+                    } else {
+                        finalResult += "\n║   ["+(i+1)+":"+(i+4)+"] --> "+splitResults.get(count-1)+"    ║                   ║";
+                        count++;
+                        break;
+                    } 
                     case 25:
-                    finalResult += "\n║   ["+(i+1)+":"+(i+2)+"] --> "+splitResults.get(count)+"    ║";
-                        if (i == 34) {
-                        finalResult += "\t\t\t║";
+                    if (index % 3 != 0) {
+                        finalResult += "\n║   ["+(i+1)+":"+(i+2)+"] --> "+splitResults.get(count-1)+"    ║";
+                        count++;
+                        finalResult += "\t["+(i+1)+":"+(i+4)+"] --> "+splitResults.get(count-1)+"   ║";
+                        count++;
+                        break;
+                    } else {
+                        finalResult += "\n║   ["+(i+1)+":"+(i+4)+"] --> "+splitResults.get(count-1)+"   ║                   ║";
+                        count++;
                         break;
                     }
-                    finalResult += "\t["+(i+1)+":"+(i+4)+"] --> "+splitResults.get(count+1)+"   ║";
-                    break;
                     case 26:
-                    finalResult += "\n║   ["+(i+1)+":"+(i+2)+"] --> "+splitResults.get(count)+"   ║";
-                        if (i == 34) {
-                        finalResult += "\t\t\t║";
+                    if (index % 3 != 0) {
+                    finalResult += "\n║   ["+(i+1)+":"+(i+2)+"] --> "+splitResults.get(count-1)+"   ║";
+                    count++;
+                    finalResult += "\t["+(i+1)+":"+(i+4)+"] --> "+splitResults.get(count-1)+"   ║";
+                    count++;
+                    break;
+                    } else {
+                        finalResult += "\n║   ["+(i+1)+":"+(i+4)+"] --> "+splitResults.get(count-1)+"   ║                   ║";
+                        count++;
                         break;
                     }
-                    finalResult += "\t["+(i+1)+":"+(i+4)+"] --> "+splitResults.get(count+1)+"   ║";
+                    case 27:
+                    if (index % 3 != 0) {
+                    finalResult += "\n║   ["+(i+1)+":"+(i+2)+"] --> "+splitResults.get(count-1)+"   ║";
+                    count++;
+                    finalResult += "\t["+(i+1)+":"+(i+4)+"] --> "+splitResults.get(count-1)+"  ║";
+                    count++;
                     break;
+                    } else {
+                        finalResult += "\n║   ["+(i+1)+":"+(i+4)+"] --> "+splitResults.get(count-1)+"  ║                   ║";
+                        count++;
+                        break;
+                    }
                     case 28:
-                    finalResult += "\n║   ["+(i+1)+":"+(i+2)+"] --> "+splitResults.get(count)+"  ║";
-                        if (i == 34) {
-                        finalResult += "\t\t\t║";
+                    if (index % 3 != 0) {
+                    finalResult += "\n║   ["+(i+1)+":"+(i+2)+"] --> "+splitResults.get(count-1)+"  ║";
+                    count++;
+                    finalResult += "\t["+(i+1)+":"+(i+4)+"] --> "+splitResults.get(count-1)+"  ║";
+                    count++;
+                    break;
+                    } else {
+                        finalResult += "\n║   ["+(i+1)+":"+(i+4)+"] --> "+splitResults.get(count-1)+"  ║                   ║";
+                        count++;
                         break;
                     }
-                    finalResult += "\t["+(i+1)+":"+(i+4)+"] --> "+splitResults.get(count+1)+"  ║";
+                    case 29:
+                    if (index % 3 != 0) {
+                    finalResult += "\n║   ["+(i+1)+":"+(i+2)+"] --> "+splitResults.get(count-1)+" ║";
+                    count++;
+                    finalResult += "\t["+(i+1)+":"+(i+4)+"] --> "+splitResults.get(count-1)+"  ║";
+                    count++;
                     break;
-                }
-                count++;
-                if (i == 34) {
+                    } else {
+                        finalResult += "\n║   ["+(i+1)+":"+(i+4)+"] --> "+splitResults.get(count-1)+" ║                    ║";
+                        count++;
+                        break;
+                    }
+                    case 30:
+                    if (index % 3 != 0) {
+                    finalResult += "\n║   ["+(i+1)+":"+(i+2)+"] --> "+splitResults.get(count-1)+" ║";
+                    count++;
+                    finalResult += "   ["+(i+1)+":"+(i+4)+"] --> "+splitResults.get(count-1)+" ║";
+                    count++;
                     break;
+                    } else {
+                        finalResult += "\n║   ["+(i+1)+":"+(i+4)+"] --> "+splitResults.get(count-1)+" ║                   ║";
+                        count++;
+                        break;
+                    }
+                    case 31:
+                    if (index % 3 != 0) {
+                    finalResult += "\n║   ["+(i+1)+":"+(i+2)+"] --> "+splitResults.get(count-1)+" ║";
+                    count++;
+                    finalResult += "\t["+(i+1)+":"+(i+4)+"] --> "+splitResults.get(count-1)+"  ║";
+                    count++;
+                    break;
+                    } else {
+                        finalResult += "\n║   ["+(i+1)+":"+(i+4)+"] --> "+splitResults.get(count-1)+" ║                   ║";
+                        count++;
+                        break;
+                    }
                 }
-                
             } catch (IndexOutOfBoundsException e) {
                 e.getMessage();
             }
+            index++;
         }
         finalResult += "\n╚═══════════════════╩═══════════════════╝\n";
         finalResult += "\nBest split: "+firstnumber+", "+secondnumber+" which occurred "+best+" times.";
         return finalResult;
     }
+
     public int getFirstDozen(){
         return firstDozenCount;
     }
@@ -266,5 +344,14 @@ public class Statistics {
     }
     public int getLowCount(){
         return lowCount;
+    }
+    public int getFirstColumnCount(){
+        return firstColumnCount;
+    }
+    public int getSecondColumnCount(){
+        return secondColumnCount;
+    }
+    public int getThirdColumnCount(){
+        return thirdColumnCount;
     }
 }

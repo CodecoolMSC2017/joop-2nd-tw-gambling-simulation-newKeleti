@@ -52,7 +52,7 @@ public class Logger {
     }
 
     public void columnCount(int[] numbers){
-        System.out.println(stat.columns(numbers)+"\n");
+        System.out.println(stat.columns(numbers,0,0,0)+"\n");
         System.out.println("Betting on any of the columns will give you an 2-1 payout (pays your original bet PLUS 2 units)"+"\n");
     }
 
