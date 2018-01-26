@@ -20,3 +20,10 @@ Keleti keleti = new Keleti();
 * Entering the **number** is optional. This is how you can generate a given number of simulations.
 * If you already have simulations generated, this isn't neccessary, since the program can read the generated
 simulations and generate statistics based on those.
+
+
+### The program
+
+#### You can use the `Statistics` menupoint in the program's main menu to see detailed statistics from the data.csv file.
+
+#### You can use the `Results` menupoint in the program's main menu to see each option's most occurrent value.
